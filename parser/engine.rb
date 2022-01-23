@@ -26,7 +26,7 @@ VALUES('#{result[:name]}', #{result[:price]}, '#{result[:availability]}', CURREN
       i_times = 0
       # Add the thread for each category
       @threads << Thread.new do
-        db = PG.connect dbname: 'db/development', user: 'postgres'
+        db = PG.connect dbname: 'app-dev', user: 'user' # 'db/development', user: 'postgres'
         each_threads_links.each do |url_category|
           puts "Parse category page: #{url_category}"
           # Get all product links on category page
