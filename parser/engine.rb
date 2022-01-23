@@ -1,5 +1,4 @@
 require 'pg'
-require './db'
 require './parser'
 class Engine
   def initialize
@@ -27,7 +26,8 @@ VALUES('#{result[:name]}', #{result[:price]}, '#{result[:availability]}', CURREN
       i_times = 0
       # Add the thread for each category
       @threads << Thread.new do
-        db = Db.new.connect
+        db = PG.connect host: DB_HOST, port: '5432', dbname: DB_NAME, user: DB_USER, password: DB_PASS
+        # dbname: 'db/development', user: 'postgres' local DB
         each_threads_links.each do |url_category|
           puts "Parse category page: #{url_category}"
           # Get all product links on category page
