@@ -20,14 +20,19 @@ class Engine
 VALUES('#{result[:name]}', #{result[:price]}, '#{result[:availability]}', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)"
   end
 
+  def db_connect
+    PG.connect host: ENV['DB_HOST'], port: '5432', dbname: ENV['DB_NAME'], user: ENV['DB_USER'],
+               password: ENV['DB_PASS']
+  end
+
   def start(all_category_link, number_of_threads)
+    db_connect.exec "TRUNCATE Books"
     data = threads(all_category_link, number_of_threads)
     data.each do |each_threads_links|
       i_times = 0
       # Add the thread for each category
       @threads << Thread.new do
-        db = PG.connect host: ENV['DB_HOST'], port: '5432', dbname: ENV['DB_NAME'], user: ENV['DB_USER'],
-                        password: ENV['DB_PASS']
+        db = db_connect
         # dbname: 'db/development', user: 'postgres' local DB
         each_threads_links.each do |url_category|
           puts "Parse category page: #{url_category}"
