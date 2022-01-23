@@ -26,7 +26,7 @@ VALUES('#{result[:name]}', #{result[:price]}, '#{result[:availability]}', CURREN
   end
 
   def start(all_category_link, number_of_threads)
-    db_connect.exec "TRUNCATE Books"
+    db_connect.exec "TRUNCATE Books RESTART IDENTITY"
     data = threads(all_category_link, number_of_threads)
     data.each do |each_threads_links|
       i_times = 0
