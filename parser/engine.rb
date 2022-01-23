@@ -26,7 +26,8 @@ VALUES('#{result[:name]}', #{result[:price]}, '#{result[:availability]}', CURREN
       i_times = 0
       # Add the thread for each category
       @threads << Thread.new do
-        db = PG.connect host: DB_HOST, port: '5432', dbname: DB_NAME, user: DB_USER, password: DB_PASS
+        db = PG.connect host: ENV['DB_HOST'], port: '5432', dbname: ENV['DB_NAME'], user: ENV['DB_USER'],
+                        password: ENV['DB_PASS']
         # dbname: 'db/development', user: 'postgres' local DB
         each_threads_links.each do |url_category|
           puts "Parse category page: #{url_category}"
