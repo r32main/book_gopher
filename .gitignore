@@ -42,4 +42,5 @@
 /parser/test.rb
 /parser/test2.rb
 /.idea/*
-/parser/.csv
+/parser/*.csv
+/parser/pg_connect.rb
