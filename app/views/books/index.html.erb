@@ -2,10 +2,18 @@
 <table class="table table-hover table-sm">
   <thead class="table-light">
   <tr>
-    <th scope="col">id</th>
-    <th scope="col">Name</th>
-    <th scope="col">Price(₴)</th>
-    <th scope="col">Availability</th>
+    <th scope="col">id
+      <%= link_to raw("&#8595;"), root_path(order: 'desc') %>
+      <%= link_to raw("&#8593;"), root_path(order: 'asc') %></th>
+    <th scope="col">Name
+      <%= link_to raw("&#8595;"), root_path(order_name: 'desc') %>
+      <%= link_to raw("&#8593;"), root_path(order_name: 'asc') %></th>
+    <th scope="col">Price(₴)
+      <%= link_to raw("&#8595;"), root_path(order_price: 'desc') %>
+      <%= link_to raw("&#8593;"), root_path(order_price: 'asc') %></th>
+    <th scope="col">Availability
+      <%= link_to raw("&#8595;"), root_path(order_av: 'desc') %>
+      <%= link_to raw("&#8593;"), root_path(order_av: 'asc') %></th>
   </tr>
   </thead>
   <tbody>
